@@ -167,38 +167,13 @@ client.on("guildMemberAdd", async member => {
     moment.locale("tr"); 
    const gecen = moment.duration(new Date().getTime() - user.createdAt.getTime()).format(` YY **[Yıl,]** DD **[Gün,]** HH **[Saat,]** mm **[Dakika,]** ss **[Saniye]**`) 
 
-   var üyesayısı = message.guild.members.size.toString().replace(/ /g, "     ");
-   var üs = üyesayısı.match(/([0-9])/g);
-   üyesayısı = üyesayısı.replace(/([a-zA-Z])/g, "bilinmiyor").toLowerCase(); 
-   if (üs) {
-     üyesayısı = üyesayısı.replace(/([0-9])/g, d => {
-       return {
-         "1": "<a:1_:838373414015729694>",
-         "2": "<a:2_:838373413998559242>",
-         "3": "<a:3_:838373414187302932>",
-         "4": "<a:4_:838373413981650954>",
-         "5": "<a:5_:838373414040764429>",
-         "6": "<a:6_:838373413994627123>",
-         "7": "<a:7_:838373414074449980>",
-         "8": "<a:8_:838373413693030431>",
-         "9": "<a:9_:838373413747163147>",
-         "0": "<a:0_:838373414187040787>"
-       }[d];
-     });
-   }
-
   var kontrol;
   if (kurulus < 1036800000)
     kontrol = `Güvenilir Değil ${ayarlar.yukleniyor}`;
   if (kurulus > 1036800000)
     kontrol = `Güvenilir ${ayarlar.yeah}`;
 
-if(kurulus > 1036800000) { 
-    member.roles.add("837370885714608129")
- } else { 
-   member.roles.add("837370885714608129")
-   member.roles.add("841649971156615201")
-  }
+   member.roles.add(ayarlar.kayıtsız)
 
     member.guild.fetchInvites().then(async guildInvites => {
         const ei = invites[member.guild.id];
@@ -236,7 +211,7 @@ ${ayarlar.hyp} Kayıt olmak için **<@&${ayarlar.kayıtcı}>** rolündeki yetkil
 
 ${ayarlar.stars} Sohbet etmeye başlamadan önce **<#834327007134744606>** kanalındaki kuralları okumanı tercih ederim.
 
-Seninle beraber **${üyesayısı.toString()}** kişiye ulaştık ${ayarlar.tadaa}.
+Seninle beraber ${client.emojili(`${member.guild.memberCount}`)} kişiye ulaştık ${ayarlar.tadaa}.
 `)
 
 client.channels.cache.get("842671682891939860").send(new Discord.MessageEmbed()
@@ -423,16 +398,17 @@ client.on("guildMemberAdd", member => {
   member.setNickname(`• İsim ' Yaş`) 
   });
 
-
 client.on('userUpdate', async (oldUser, newUser) => {
   if(oldUser.username == newUser.username || oldUser.bot || newUser.bot) return;
   let Guild = client.guilds.cache.get("SUNUCU ID")
   let member = Guild.members.cache.get(oldUser.id);
   if(["tag", "tag"].some(isim => member.user.username.includes(isim)) && !member.roles.cache.has(ayarlar.TagRolu)){
   member.roles.add("TAG ID").catch();
+  }
     if(["etiket tag", "etiket tag"].some(tag => member.user.discriminator.includes(tag)) && !member.roles.cache.has(ayarlar.TagRolu)){
   member.roles.add("TAG ID").catch();
-}});
+}
+});
 
 client.on('userUpdate', async (oldUser, newUser) => {
   if(oldUser.username == newUser.username || oldUser.bot || newUser.bot) return;
@@ -440,9 +416,11 @@ client.on('userUpdate', async (oldUser, newUser) => {
   let member = Guild.members.cache.get(oldUser.id);
   if(!["tag", "tag"].some(isim => member.user.username.includes(isim))){
   member.roles.remove("TAG ID").catch();
+  }
   if(!["etiket tag", "etiket tag"].some(tag => member.user.discriminator.includes(tag)) && !member.roles.cache.has(ayarlar.TagRolu)){
   member.roles.remove("TAG ID").catch();
-}});
+}
+});
 
            const numbers = {
             "8":"<a:8_:838373413693030431>",
