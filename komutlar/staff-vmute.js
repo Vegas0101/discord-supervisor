@@ -44,7 +44,7 @@ let kdb = new db.table("ceza")
 
     db.add(`cezaid.${message.guild.id}`, +1)
     db.add(`VmAtma.${message.author.id}`, 1)
-    db.add(`cezapuan.${kullanıcı.id}`, 8)
+    db.add(`cezapuan.${user.id}`, 8)
     db.add(`VmAlma.${user.id}`, 1)
     kdb.push(`sicil.${user.id}`, {
         userID: user.id,
