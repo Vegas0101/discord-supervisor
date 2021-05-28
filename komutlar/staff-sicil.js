@@ -3,7 +3,7 @@ const ayar = require("../ayarlar.json");
 const db = require("quick.db");
 const kdb = new db.table("ceza");
 exports.run = async(client, message, args) => {
-    if (!message.member.roles.cache.has(ayar.jailH)) return message.react(ayar.carpi)
+    if (!message.member.roles.cache.has(ayar.jailH) && !message.member.hasPermission("ADMINISTRATOR")) return message.react(ayar.carpi)
     let embed = new MessageEmbed().setColor('RANDOM').setTimestamp().setAuthor(message.author.tag, message.author.avatarURL({ dynamic: true }))
 
     let member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
