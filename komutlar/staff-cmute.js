@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
 const kdb = new db.table("ceza")
 
-if(!message.member.roles.cache.has(conf.muteH) && !message.member.hasPermission("ADMINISTRATOR") return message.react(conf.carpi)
+if(!message.member.roles.cache.has(conf.muteH) && !message.member.hasPermission("ADMINISTRATOR")) return message.react(conf.carpi)
 let kullanıcı = message.mentions.users.first()
 let cezaID = db.get(`cezaid.${message.guild.id}`) + 1
 
