@@ -53,16 +53,16 @@ let kdb = new db.table("ceza")
         start: new Date(), 
         cezaID: cezaID })
 
-        let sonceza = kdb.fetch(`sonceza.${kullanıcı.id}`)
+        let sonceza = kdb.fetch(`sonceza.${user.id}`)
 
-        if(sonceza) return kdb.delete(`sonceza.${kullanıcı.id}`)
+        if(sonceza) return kdb.delete(`sonceza.${user.id}`)
     
         if(!sonceza) {
     
     setTimeout(async() => {
     
-          await kdb.push(`sonceza.${kullanıcı.id}`, {
-          userID: kullanıcı.id,
+          await kdb.push(`sonceza.${user.id}`, {
+          userID: user.id,
           adminName: message.member.displayName, 
           Tip: "VMUTE", 
           start: new Date(),
@@ -74,7 +74,7 @@ let kdb = new db.table("ceza")
 
         db.add(`YetkiliPuan.${message.author.id}`, 4)
         let cezapuan = db.fetch(`cezapuan.${user.id}`)
-        client.channels.cache.get("834693448275460109").send(`**${kullanıcı}** aldığı \`#${cezaID+1}\` numaralı ceza ile **${cezapuan}** ceza puanına ulaştı. (\`8\`)`)
+        client.channels.cache.get("834693448275460109").send(`**${user}** aldığı \`#${cezaID+1}\` numaralı ceza ile **${cezapuan}** ceza puanına ulaştı. (\`8\`)`)
         
 
     client.channels.cache.get(ayar.muteLog).send(new MessageEmbed()
