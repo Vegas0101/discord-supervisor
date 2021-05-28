@@ -530,4 +530,4 @@ client.on("message", async msg => {
 
  
 
-client.login(ayarlar.botToken);
+client.login(ayarlar.botToken).then(c => console.log(`Bot başarılı bir şekilde aktif oldu.`).catch(err => console.log(`Bot giriş yaparken hata oluştu! ${err}`))
